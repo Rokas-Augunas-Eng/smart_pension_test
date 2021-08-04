@@ -60,5 +60,5 @@ The result should be:
 ## Improvements
 ---
 * Further tests should be implemented. RSpec is relatively new to me and hence less time was available writing tests for the program. Improvements could be made around TDD. 
-* One Rubocop offence remains outstanding, which relates to the '/log_parser.spec.rb' file having too many lines [27/25] (see below). The 25 line limit is not something that is listed in the Ruby style guide. Nevertheless, if I had more time, if I had more time I would have addressed the final rubocop offence
+* One Rubocop offence remains outstanding, which relates to the '/log_parser.spec.rb' file having too many lines [27/25] (see below). If I had more time, I would have addressed the final rubocop offence.
 ![Lines](images/Lines.PNG "Lines")
