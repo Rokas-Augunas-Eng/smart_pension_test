@@ -5,17 +5,16 @@ class LogParser
   attr_reader :visit_counts, :log_path
 
   def initialize(log_path)
-    @log_path = log_path
-    @visit_counts = Hash.new { |h, k| h[k] = [] }
+    @log_path = log_path # "webserver.log"
+    @visit_counts = Hash.new { |h, k| h[k] = [] } # {}
   end
 
   def parse
-    lines = File.readlines(log_path)
-
-    lines.each do |line|
+    File.foreach(log_path) do |line|
       address_and_ip = line.strip.split(' ')
       visit_counts[address_and_ip[0]] << address_and_ip[1]
     end
+    visit_counts
   end
 
   def display_unique_views
@@ -24,6 +23,10 @@ class LogParser
 
   def display_most_views
     format_list(most_views)
+  end
+
+  def display_sorted_views
+    format_list(sort_views)
   end
 
   private
@@ -44,9 +47,17 @@ class LogParser
     top_views.sort_by { |_address, ip| -ip }
   end
 
+  def sort_views
+    sort_views = Hash.new { |h, k| h[k] = [] }
+    visit_counts.each do |address, ips|
+      sort_views[address] = ips.size
+    end
+    sort_views.sort_by { |address, _ip| address }
+  end
+
   def format_list(list)
-    list.each_with_index do |(address, views), index|
-      print "#{index + 1}. #{address} - #{views} (views) \n"
+    list.each.with_index(1) do |(address, views), index|
+      print "#{index}. #{address} - #{views} (views) \n"
     end
   end
 end
