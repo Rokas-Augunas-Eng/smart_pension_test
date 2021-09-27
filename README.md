@@ -7,7 +7,7 @@
 * [Testing](#testing)
 * [WebLog](#weblog)
 * [Results](#results)
-* [Imrpovements](#improvements)
+* [Improvements](#improvements)
 
 ## General info
 The program takes a log as an argument (webserver.log) and outputs a list of webpages with the most page views and unique views (same ip address), which are sorted in descending order.
